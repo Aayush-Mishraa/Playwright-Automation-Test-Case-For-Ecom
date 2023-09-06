@@ -1,5 +1,5 @@
 const {test, expect, request} = require('@playwright/test');
-const { APiUtils } = require('../Utils/APiUtils'); //to import the class 
+const { APiUtils } = require('../utils/APiUtils'); //to import the class 
 
 const loginPayload = {userEmail: "anshika@gmail.com", userPassword: "Iamking@000"};
 const orderPayload = {orders:[{country:"cuba",productOrderedId:"6262e95ae26b7e1a10e89bf0"}]};

@@ -1,5 +1,5 @@
 const {test, expect} = require('@playwright/test');
-// const {customtest} = require('../utils/test-base');
+const {customtest} = require('../utils/test-base');
 
 const {POManager} = require('../pageobjects/POManager');
 //Json->string->js object
@@ -11,6 +11,7 @@ for(const data of dataset)
 test(`@Webs Client App login for ${data.productName}`, async ({page})=>
 {
   const poManager = new POManager(page);
+  
    //js file- Login js, DashboardPage
     const products = page.locator(".card-body");
     const loginPage = poManager.getLoginPage();
@@ -42,26 +43,26 @@ test(`@Webs Client App login for ${data.productName}`, async ({page})=>
 });
 }
 
-// customtest(`Client App login`, async ({page,testDataForOrder})=>
-// {
-//   const poManager = new POManager(page);
-//    //js file- Login js, DashboardPage
-//     const products = page.locator(".card-body");
-//     const loginPage = poManager.getLoginPage();
-//     await loginPage.goTo();
-//     await loginPage.validLogin(testDataForOrder.username,testDataForOrder.password);
-//     const dashboardPage = poManager.getDashboardPage();
-//     await dashboardPage.searchProductAddCart(testDataForOrder.productName);
-//     await dashboardPage.navigateToCart();
+customtest(`Client App login`, async ({page,testDataForOrder})=>
+{
+  const poManager = new POManager(page);
+   //js file- Login js, DashboardPage
+    const products = page.locator(".card-body");
+    const loginPage = poManager.getLoginPage();
+    await loginPage.goTo();
+    await loginPage.validLogin(testDataForOrder.username,testDataForOrder.password);
+    const dashboardPage = poManager.getDashboardPage();
+    await dashboardPage.searchProductAddCart(testDataForOrder.productName);
+    await dashboardPage.navigateToCart();
 
-//    const cartPage = poManager.getCartPage();
-//    await cartPage.VerifyProductIsDisplayed(testDataForOrder.productName);
-//    await cartPage.Checkout();
+   const cartPage = poManager.getCartPage();
+   await cartPage.VerifyProductIsDisplayed(testDataForOrder.productName);
+   await cartPage.Checkout();
 
 
-// })
-// //test files will trigger parallel
-// //individual tests in the file will run in sequence
+});
+//test files will trigger parallel
+//individual tests in the file will run in sequence
 
 
 
